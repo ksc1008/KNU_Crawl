@@ -1,4 +1,5 @@
 import json
+import GetClassList
 from pprint import pprint
 
 import requests
@@ -15,8 +16,8 @@ def ReadSchedule(path):
     classes = []
     with open(path, 'r') as openfile:
         json_data = json.load(openfile)
-        dic = {}
         for cls in json_data['data']:
+            dic = {}
             if cls['lssnsTimeInfo'] != None:
                 t = (cls['lssnsTimeInfo']).split('<br/>')
                 sche = []
@@ -63,11 +64,11 @@ if __name__ == "__main__":
             "contents": ""
         }
     }
-    path = './교양.json'
+    path = './교양2.json'
     name = '계절'
     requestHeader = {'Content-Type': 'application/json',
                      'Accept': 'application/json, text/javascript, */*; q=0.01'}
     URL = 'https://knuin.knu.ac.kr/public/web/stddm/lsspr/syllabus/lectPlnInqr/selectListLectPlnInqr'
     # GetSchedule(name, requestStr, requestHeader, URL)
-    ReadSchedule('./교양.json')
-
+    #ReadSchedule('./교양2.json')
+    GetClassList.GetUnivList()
