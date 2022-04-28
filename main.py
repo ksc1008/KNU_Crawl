@@ -1,15 +1,5 @@
 import json
 import GetClassList
-from pprint import pprint
-
-import requests
-
-def GetSchedule(filename, payload, header, url):
-    request = json.dumps(payload)
-    response = requests.post(url, request, headers=header)
-    print(response)
-    with open('./{0}.json'.format(filename), 'w') as savefile:
-        json.dump(response.json(), savefile, indent=4)
 
 
 def ReadSchedule(path):
@@ -37,38 +27,9 @@ def ReadSchedule(path):
         if c['sche'] != '':
             print('시간표 : {0}'.format(c['sche']), end='\n\n')
 
-
-if __name__ == "__main__":
-    requestStr = {
-        "search": {
-            "estblYear": "2022",
-            "estblSmstrSctcd": "CMBS001400004",
-            "sbjetCd": "",
-            "sbjetNm": "",
-            "crgePrfssNm": "",
-            "sbjetRelmCd": "01",
-            "sbjetSctcd": "",
-            "estblDprtnCd": "",
-            "rmtCrseYn": "",
-            "rprsnLctreLnggeSctcd": "",
-            "flplnCrseYn": "",
-            "pstinNtnnvRmtCrseYn": "",
-            "dgGbDstrcRmtCrseYn": "",
-            "gubun": "01",
-            "isApi": "Y",
-            "bldngSn": "",
-            "bldngCd": "",
-            "bldngNm": "",
-            "lssnsLcttmUntcd": "",
-            "sbjetSctcd2": "",
-            "contents": ""
-        }
-    }
-    path = './교양2.json'
-    name = '계절'
-    requestHeader = {'Content-Type': 'application/json',
-                     'Accept': 'application/json, text/javascript, */*; q=0.01'}
-    URL = 'https://knuin.knu.ac.kr/public/web/stddm/lsspr/syllabus/lectPlnInqr/selectListLectPlnInqr'
+if __name__ == '__main__':
     # GetSchedule(name, requestStr, requestHeader, URL)
-    #ReadSchedule('./교양2.json')
-    GetClassList.GetUnivList()
+    # ReadSchedule('./교양2.json')
+    # GetClassList.GetUnivList()
+    # GetClassList.getMajorClass('1O0204','global')
+    GetClassList.getAllMajorClasses()
